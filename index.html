@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      OH.STUDIO
+    </title>
+
+    <style>
+
+      body{
+        margin: 0;
+      }
+
+      p{
+        font-family: Arial;
+        margin: 0;
+      }
+
+      .hero{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 750px;
+        margin: 200px auto 0 auto;
+      }
+
+      .hero-text{
+        text-align: center;
+        font-size: 70px;
+        font-weight: 550;
+      }
+
+      .services{
+        display: flex;
+        margin-top: 48px;
+      }
+
+      .services p{
+        margin-right: 10px; 
+        font-size: 14px;
+      }
+
+      .brands-container-center-in-middle{
+        margin-top: 130px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .brands-container{
+        display: grid;
+        grid-template-columns: 650px 650px;
+        column-gap: 20px;
+        row-gap: 40px;
+      }
+
+      .brand{
+        position: relative;
+        height: 500px;
+        border-radius: 15px;
+        border: none;
+        overflow: hidden;
+      }
+
+
+      .brand-image{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: filter 0.5s;
+      }
+
+      .overlay{
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0);
+        height: 500px;
+        width: 650px;
+        top: 0;
+        border-radius: 15px;
+        transition: background-color 0.5s;
+      }
+
+      .brand:hover .brand-image{
+        filter: blur(8px);
+      }
+
+      .brand:hover .overlay{
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .brand-tag{
+        margin-top: 20px;
+        margin-left: 20px;
+        font-size: 17px;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .due{
+        color: gray;
+        margin-left: 20px;
+        margin-top: 6px;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .brand:hover .due{
+        opacity: 1;
+      }
+
+      .brand:hover .brand-tag{
+        opacity: 1;
+      }
+
+      .circle-with-arrow{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        top: 40px;
+        right: 40px;
+        border-radius: 100%;
+        border: none;
+        z-index: 5;
+        opacity: 0;
+        transform: translate(0);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .arrow-in-circle{
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+
+      .brand:hover .circle-with-arrow{
+        transform: translate(20px, -20px);
+        opacity: 1;
+      }
+
+      .contact-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        font-size: 40px;
+      }
+
+      .get-in-touch{
+        color: gray;
+      }
+
+      .footer{
+        height: 95px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 60px;
+      }
+
+      .left-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        width: 900px;
+        height: 50px;
+      }
+
+      .left-section p{
+        margin-left: -275px;
+      }
+
+      .right-section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        background-color: white;
+        width: 150px;
+      }
+
+      .parent-container{
+        position: relative;
+        height: 600px;
+        width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+        scale: 0.05;
+        margin-left: -1035px;
+      }
+
+      .child-container{
+        height: 480px;
+        width: 480px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 100%;
+      }
+
+      @keyframes rect{
+        0%{scale: 1 1}
+        28%{scale: 1 1}
+        33.33%{scale: 3 1}
+        61%{scale: 3 1}
+        66.66%{scale: 6 1}
+        94%{scale: 6 1}
+        100%{scale: 1 1}
+      }
+
+      @keyframes spin{
+        0%{transform:rotate(0deg)}
+        28%{transform:rotate(0deg)}
+        33.33%{transform:rotate(45deg)}
+        61%{transform:rotate(45deg)}
+        66.66%{transform:rotate(90deg)}
+        94%{transform:rotate(90deg)}
+        100%{transform:rotate(135deg)}
+      }
+
+      @keyframes circle-scale{
+        0%{scale: 2}
+        28%{scale: 2}
+        33.33%{scale: 5; opacity: 0.4}
+        61%{scale: 5; opacity: 0.4}
+        66.66%{scale: 11; opacity: 0.2}
+        94%{scale: 11; opacity: 0.2}
+        100%{scale: 2}
+      }
+
+      
+
+      .rect{
+        position: absolute;
+        height: 480px;
+        width: 20px;
+        background-color: black;
+        animation-name: rect;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+      }
+
+      .container-45{
+        height: 200px;
+        width: 200px;
+        margin-top: -89px;
+        margin-left: 307px;
+      }
+
+      .container-90{
+        margin-top: -20px;
+      }
+
+      .container-135{
+        position: relative;
+        height: 1px;
+        width: 1px;
+        background-color: blue;
+      }
+
+      .rect-135{
+        position: absolute;
+        height: 480px;
+        width: 20px;
+        background-color: black;
+        animation-name: rect;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+        top: -70px;
+        left: 160px;
+      }
+
+
+      .middle-circle{
+        z-index: 999;
+        border-radius: 100%;
+        height: 30px;
+        width: 30px;
+        background-color: black;
+        animation-name: circle-scale;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+        position: absolute;
+        bottom: 285px;
+      }
+
+      a{
+        text-decoration: none;
+        color: gray;
+      }
+
+      a:hover{
+        opacity: 0.6;
+      }
+
+      .right-section  p a{
+        color: black;
+      }
+
+      .right-section p a:hover{
+        opacity: 0.4;
+      }
+
+
+      .header {
+      top: 0;
+      left: 0;
+      right: 0;
+      padding-top: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+    }
+
+
+    .box {
+      width: 300px;
+      height: 50px;
+      background-color: rgba(219, 217, 217, 0.5);
+      border-radius: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 5px;
+      margin-left: -4px;
+      backdrop-filter: blur(20px);
+      scale: 0.97;
+      padding-right: 13.5px;
+      
+    }
+
+    .page {
+      display: flex;
+    }
+
+    .page-name-label {
+      color: black;
+      font-family: Arial;
+      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0);
+      padding: 14.3px 30.6px;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #home, #profile, #contact {
+      display: none;
+    }
+
+    #home:checked + .page-name-label, #profile:checked + .page-name-label, #contact:checked + .page-name-label {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    label a{
+      color: black;
+      font-weight: 550;
+    }
+
+    label a:hover{
+      opacity: 1;
+    }
+
+
+    </style>
+
+  </head>
+  <body>
+    <div class="hero">
+      <p class="hero-text">A brand and product designer working with clients globally</p>
+      <div class="services">
+        <p style="background-color: white; padding: 8px 12px; border-radius: 100px; margin-right: 0px;">Expertise</p>
+        <p style="background-color: #F5F5F5; padding: 8px 12px; border-radius: 100px;">Branding</p>
+        <p style="background-color: #F5F5F5; padding: 8px 12px; border-radius: 100px;">Design</p>
+        <p style="background-color: #F5F5F5; padding: 8px 12px; border-radius: 100px;">Product Systems</p>
+      </div>
+    </div>
+
+    <div class="brands-container-center-in-middle">
+      <div class="brands-container">
+        <div class="brand">
+          <img class="brand-image" src="brand-images/kfr022WaJ8YJUyZFmdwCB3pXhs.jpg">
+          <div class="overlay"><p class="brand-tag">Aire</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <img class="brand-image" src="brand-images/QVKFKT3dyGxloXfzzpurVKNMM6M.jpg">
+          <div class="overlay"><p class="brand-tag">Correlated</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+
+        <div class="brand">
+          <img class="brand-image" src="brand-images/3rd-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Channel 5</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <img class="brand-image" src="brand-images/4th-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Ronald Abram</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+
+        <div class="brand">
+          <img class="brand-image" src="brand-images/6th-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Propeller</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <img class="brand-image" src="brand-images/7th-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Schuh</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+
+        <div class="brand">
+          <img class="brand-image" src="brand-images/8th-brand.jpg">
+          <div class="overlay"><p class="brand-tag"></p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <img class="brand-image" src="brand-images/9th-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Correlated</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+
+        <div class="brand">
+          <img class="brand-image" src="brand-images/10th-brand.jpg">
+          <div class="overlay"><p class="brand-tag">Aire</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <video class="brand-image" src="https://framerusercontent.com/assets/SGjFvgcbK7s4yKh0xwuNjriMNII.mp4" autoplay muted loop></video>
+          <div class="overlay">
+            <p class="brand-tag">Correlated</p>
+            <p class="due">Coming Soon</p>
+          </div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+
+        <div class="brand">
+          <video class="brand-image" src="https://framerusercontent.com/assets/XuzMZ3Z1QQHKltPqRjzGnsWs27M.mp4" muted autoplay loop></video>
+          <div class="overlay">
+            <p class="brand-tag">Baselworld</p>
+            <p class="due">Coming Soon</p>
+          </div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+        <div class="brand">
+          <video class="brand-image" src="https://framerusercontent.com/assets/NieGBlxBdgpz9QCHV5Aj89rWjVg.mp4" autoplay loop muted></video>
+          <div class="overlay"><p class="brand-tag">NYCB</p></div>
+          <div class="circle-with-arrow"><img class="arrow-in-circle" src="icons/right-up.png"></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-container">
+      <p>Let's work together.</p>
+      <p class="get-in-touch"><a href="" target="_blank">Get in touch.</a></p>
+    </div>
+
+    <div class="footer">
+      <div class="left-section">
+        <div class="parent-container">
+          <div class="middle-circle"></div>
+          <div class="child-container">
+            <div class="rect"></div>
+            <div class="container-45" style="transform: rotate(45deg);"><div class="rect"></div></div>
+            <div class="container-90" style="transform: rotate(90deg);"><div class="rect"></div></div>
+          </div>
+          <div class="container-135" style="transform: rotate(135deg);"><div class="rect-135"></div></div>
+        </div>
+        <p>© Oli Harris 2023</p>
+      </div>
+      <div class="right-section">
+        <p><a href="" target="_blank">Twitter</a></p>
+        <p><a href="" target="_blank">LinkedIn</a></p>
+        <p><a href="" target="_blank">Mail</a></p>
+      </div>
+    </div>
+
+    
+    <div class="header">
+      <div class="for-blur">
+        <div class="box">
+          <div class="page">
+            <div>
+              <input type="radio" id="home" name="page-name" checked>
+              <label for="home" class="page-name-label"><a href="">Home</a></label>
+            </div>
+            <div>
+              <input type="radio" id="profile" name="page-name">
+              <label for="profile" class="page-name-label"><a href="" target="_blank">Profile</a></label>
+            </div>
+            <div>
+              <input type="radio" id="contact" name="page-name">
+              <label for="contact" class="page-name-label"><a href="">Contact</a></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
